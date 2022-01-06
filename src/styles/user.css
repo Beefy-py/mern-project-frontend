@@ -1,0 +1,75 @@
+.auth-section {
+  margin: 8rem auto;
+  width: 50%;
+}
+
+.auth-section h1 {
+  font-size: xx-large;
+  color: var(--accent-color);
+  margin-block: 2rem;
+}
+
+.logout-btn {
+  color: var(--danger) !important;
+}
+
+.logout-btn:hover {
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  color: var(--danger);
+}
+
+.logout-btn:active {
+  background: none;
+}
+
+.auth-section .submit-btns .third-party-btn {
+  border: none;
+  margin-left: 1rem;
+  background: var(--secondary-color);
+  border-radius: 0.1rem;
+}
+
+.auth-section .submit-btns .google-btn i {
+  color: var(--primary-color);
+}
+
+.auth-section .text-muted button {
+  border: none;
+  background: none;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.auth-section form button[type="submit"] {
+  width: fit-content;
+  border: 1px solid var(--accent-color);
+  background: var(--primary-color);
+  color: var(--accent-color);
+  border-radius: 0.1rem;
+}
+
+.auth-section form button[type="submit"]:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.register-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 780px) {
+  .auth-section {
+    width: 50%;
+  }
+  .register-form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .auth-section {
+    width: 80%;
+  }
+}

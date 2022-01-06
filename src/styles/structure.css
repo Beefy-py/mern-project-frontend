@@ -1,0 +1,319 @@
+nav {
+  padding: 0 1rem;
+  margin: 1.5rem auto;
+  width: 90%;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  display: inline;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  font-family: "Rampart One", cursive;
+}
+
+nav ul {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 15%;
+}
+
+nav li {
+  display: inline;
+  margin: 0 0.5rem;
+  font-family: "Dongle", sans-serif;
+}
+
+nav li::after {
+  content: "";
+  width: 0;
+  height: 0;
+  background: var(--accent-color);
+  display: block;
+
+  transition: width 0.2s ease-out;
+}
+
+nav li:hover::after {
+  width: 100%;
+  height: 2px;
+}
+
+nav a {
+  font-size: medium;
+  color: var(--secondary-color);
+}
+
+.auth-nav .dropdown-toggle {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--secondary-color) !important;
+  font-weight: bold;
+}
+
+.auth-nav .dropdown-menu {
+  background: var(--primary-color);
+}
+
+.auth-nav .auth-btns a {
+  margin: 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 0.15rem;
+  padding: 0.3rem;
+}
+
+.auth-nav .auth-btns a:hover {
+  background: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.auth-nav .auth-btns a:active {
+  background: var(--secondary-color0);
+}
+
+.dashboard {
+  width: 70%;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "user user user user stats stats"
+    "comments comments comments comments stats stats"
+    "posts posts posts posts posts posts";
+  gap: 1rem;
+}
+
+.dashboard h3 {
+  font-size: 1.1rem;
+}
+
+.dashboard h4 {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.dashboard h3 span {
+  margin-left: 0.5rem;
+  border-radius: 0.1rem;
+  background: var(--accent-color);
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  color: var(--primary-color);
+}
+
+.dashboard .data {
+  border: 1px solid var(--secondary-color0);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.dashboard .user-info {
+  grid-area: user;
+}
+
+.dashboard .user-info p {
+  margin: 0;
+  margin-block: 0.25rem;
+  margin-left: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+}
+
+.dashboard .user-info .poster-score span {
+  background: var(--success);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.1rem;
+  color: var(--primary-color);
+}
+
+.dashboard .posts {
+  grid-area: posts;
+}
+
+.dashboard .posts h3 {
+  width: fit-content;
+}
+
+.dashboard .comments {
+  grid-area: comments;
+}
+
+.dashboard .stats {
+  grid-area: stats;
+  border: 1px solid var(--secondary-color0);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.dashboard .stats div {
+  background: var(--primary-color);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.dashboard .stats div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dashboard .stats div span:last-child {
+  justify-self: end;
+}
+
+.dashboard .stats div span.pos {
+  color: var(--info);
+}
+
+.dashboard .stats div span.neg {
+  color: var(--danger);
+}
+
+.about-page {
+  margin: 2rem auto;
+  width: 60%;
+}
+
+.not-found {
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.not-found h1 {
+  font-size: 8rem;
+  font-family: "Rampart One", cursive;
+  color: var(--danger);
+}
+
+.not-found h1::selection {
+  background: var(--danger);
+  color: black;
+}
+
+.not-found a {
+  font-weight: bold;
+  background: var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.1rem;
+  color: white;
+}
+
+.not-found a:active {
+  background: var(--secondary-color);
+}
+.not-found a:hover {
+  background: var(--primary-color);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination li a {
+  background: var(--primary-color);
+  color: var(--accent-color);
+}
+
+.pagination .page-item a:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.pagination .page-item.active span {
+  background: var(--accent-color);
+}
+
+.pagination .page-item.disabled span {
+  background: var(--primary-color);
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 780px) {
+  nav ul {
+    display: none;
+  }
+
+  nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .dropdown button {
+    box-shadow: none;
+    border: none;
+    background: var(--accent-color) !important;
+  }
+
+  nav .dropdown a {
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+
+  nav .dropdown a:active {
+    text-decoration: underline;
+  }
+
+  nav .dropdown a:hover {
+    color: var(--accent-color);
+  }
+
+  nav .dropdown-toggle::after {
+    content: none !important;
+  }
+
+  nav .dropdown .username {
+    color: var(--accent-color);
+  }
+
+  nav .dropdown .user-options-sm {
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "user user  stats stats"
+      "comments comments comments comments"
+      "posts posts posts posts";
+  }
+
+  .form-container {
+    width: 70%;
+  }
+
+  .not-found h1 {
+    font-size: 4rem;
+  }
+
+  .not-found a {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form-container {
+    width: 100%;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas:
+      "user"
+      "comments"
+      "posts"
+      "stats";
+  }
+}

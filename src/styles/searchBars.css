@@ -1,0 +1,26 @@
+.search-fields {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--secondary-color0);
+  padding: 1rem;
+}
+
+.search-fields div {
+  grid-column: 1/5;
+}
+
+.search-fields button {
+  border: none;
+  background: var(--secondary-color0);
+  border-radius: 0.2rem;
+  padding: 0.5rem 2rem;
+  width: fit-content;
+}
+
+.search-fields button:hover {
+  background: var(--accent-color);
+  color: var(--primary-color);
+}
