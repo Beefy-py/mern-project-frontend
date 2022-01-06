@@ -17,13 +17,13 @@ import UserList from "./components/user/userList";
 
 const App = () => {
   const dispatch = useDispatch();
-  // const { authData } = useSelector((state) => state.auth);
-  // console.log(authData);
-  // console.log("can access post:", authData?.result._id);
+  const { authData } = useSelector((state) => state.auth);
+  console.log(authData);
+  console.log("can access post:", authData?.result._id);
 
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("profile"))
-  );
+  // const [currentUser, setCurrentUser] = useState(
+  //   JSON.parse(localStorage.getItem("profile"))
+  // );
 
   useEffect(() => {
     console.log("getting posts");
@@ -32,13 +32,13 @@ const App = () => {
     console.log("getting comments");
     dispatch(getComments());
 
-    console.log("setting currentUser");
-    setCurrentUser(JSON.parse(localStorage.getItem("profile")));
+    // console.log("setting currentUser");
+    // setCurrentUser(JSON.parse(localStorage.getItem("profile")));
   }, [dispatch, window.location]);
 
   return (
     <BrowserRouter>
-      {currentUser?.result?._id && (
+      {authData?.result?._id && (
         <header>
           <Header />
         </header>
@@ -55,7 +55,7 @@ const App = () => {
         <Route
           path="/posts/:id"
           element={
-            !currentUser?.result?._id ? (
+            !authData?.result?._id ? (
               <Auth />
             ) : (
               <div className="post-container">
@@ -69,12 +69,12 @@ const App = () => {
 
         <Route
           path="/auth"
-          element={currentUser?.result?._id ? <Navigate to="/" /> : <Auth />}
+          element={authData?.result?._id ? <Navigate to="/" /> : <Auth />}
         />
 
         <Route
           path="/users"
-          element={!currentUser?.result?._id ? <Auth /> : <UserList />}
+          element={!authData?.result?._id ? <Auth /> : <UserList />}
         />
 
         <Route path="*" element={<NotFound />} />
