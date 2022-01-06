@@ -21,6 +21,7 @@ export const loginUser = (userFields, navigate) => async (dispatch) => {
   try {
     const { data } = await api.login(userFields);
     dispatch({ type: AUTH, data });
+    console.log(data);
 
     navigate("/home");
   } catch (err) {

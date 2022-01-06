@@ -17,13 +17,6 @@ import UserList from "./components/user/userList";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { authData } = useSelector((state) => state.auth);
-  console.log(authData);
-  console.log("can access post:", authData?.result._id);
-
-  // const [currentUser, setCurrentUser] = useState(
-  //   JSON.parse(localStorage.getItem("profile"))
-  // );
 
   useEffect(() => {
     console.log("getting posts");
@@ -31,23 +24,25 @@ const App = () => {
 
     console.log("getting comments");
     dispatch(getComments());
-
-    // console.log("setting currentUser");
-    // setCurrentUser(JSON.parse(localStorage.getItem("profile")));
   }, [dispatch, window.location]);
 
   return (
     <BrowserRouter>
-      {authData?.result?._id && (
-        <header>
-          <Header />
-        </header>
-      )}
+      <header>
+        <Header />
+      </header>
 
       <Routes>
         <Route path="/posts" element={<MainContent />} />
 
-        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         <Route path="/home" element={<Navigate to="/" />} />
 
         <Route path="/posts/search" element={<MainContent />} />
@@ -55,32 +50,29 @@ const App = () => {
         <Route
           path="/posts/:id"
           element={
-            !authData?.result?._id ? (
-              <Auth />
-            ) : (
+            <PrivateRoute>
               <div className="post-container">
                 <SinglePostDetail />
               </div>
-            )
+            </PrivateRoute>
           }
         />
 
         <Route path="/about" element={<About />} />
 
-        <Route
-          path="/auth"
-          element={authData?.result?._id ? <Navigate to="/" /> : <Auth />}
-        />
+        <Route path="/auth" element={<Auth />} />
 
-        <Route
-          path="/users"
-          element={!authData?.result?._id ? <Auth /> : <UserList />}
-        />
+        <Route path="/users" element={<UserList />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
 };
+
+function PrivateRoute({ children }) {
+  const authData = JSON.parse(localStorage.getItem("profile"));
+  return authData.result._id ? children : <Navigate to="/auth" />;
+}
 
 export default App;

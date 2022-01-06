@@ -285,8 +285,8 @@ nav a {
   .dashboard {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-      "user user  stats stats"
-      "comments comments comments comments"
+      "user user stats stats"
+      "comments comments stats stats"
       "posts posts posts posts";
   }
 

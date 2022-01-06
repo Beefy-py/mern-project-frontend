@@ -24,15 +24,16 @@ const Dashboard = () => {
   const totalDislikes = userPosts.reduce((a, b) => a + b.dislikes.length, 0);
 
   const getPosterScore = () => {
-    const result = totalLikes / totalDislikes;
+    console.log(totalLikes, totalDislikes, userPosts.length);
+    const result = (totalLikes - userPosts.length) / totalDislikes;
     console.log(result);
-    if (!result || result === NaN) return "0";
+    if (!result || result === NaN || result === Infinity) return "0";
     return Math.round(result, 2);
   };
 
   if (isLoading) {
     return (
-      <div className="user-page-loading">
+      <div className="user-page-loading loading-container">
         <h5>loading your data...</h5>
         <LinearProgress />
       </div>

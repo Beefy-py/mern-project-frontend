@@ -35,8 +35,15 @@ const Auth = () => {
 
   const handleChange = (e) => {
     const field = e.target;
-
-    setFormData({ ...formData, [field.name]: field.value });
+    if (field.name === "firstName" || field.name === "lastName") {
+      setFormData({
+        ...formData,
+        [field.name]:
+          field.value.charAt(0).toUpperCase() + field.value.slice(1),
+      });
+    } else {
+      setFormData({ ...formData, [field.name]: field.value });
+    }
   };
 
   const googleSuccess = async (res) => {
