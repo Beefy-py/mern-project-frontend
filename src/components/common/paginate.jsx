@@ -20,20 +20,9 @@ const Paginate = ({ page, display }) => {
     navigate(`?page=${p}`);
   };
 
-  if (!display) return "";
-
-  return (
-    <Pagination>
-      <Pagination.First
-        onClick={() => handlePageChange(1)}
-        disabled={page === "1"}
-      />
-      <Pagination.Prev
-        onClick={() => handlePageChange(Number(page) - 1)}
-        disabled={page === "1"}
-      />
-
-      {_.range(1, numberOfPages + 1).map((pageNum) => (
+  const displayItems = () => {
+    return _.range(1, numberOfPages + 1).map((pageNum) => {
+      const item = (
         <Pagination.Item
           key={pageNum}
           active={Boolean(pageNum === Number(page))}
@@ -41,16 +30,27 @@ const Paginate = ({ page, display }) => {
         >
           {pageNum}
         </Pagination.Item>
-      ))}
+      );
+
+      return item;
+    });
+  };
+
+  if (!display) return "";
+
+  return (
+    <Pagination>
+      <Pagination.Prev
+        onClick={() => handlePageChange(Number(page) - 1)}
+        disabled={page === "1"}
+      />
+
+      {displayItems()}
       <Pagination.Ellipsis></Pagination.Ellipsis>
 
       <Pagination.Next
         disabled={Boolean(currentPage === numberOfPages)}
         onClick={() => handlePageChange(Number(page) + 1)}
-      />
-      <Pagination.Last
-        onClick={() => handlePageChange(numberOfPages)}
-        disabled={Boolean(currentPage === numberOfPages)}
       />
     </Pagination>
   );

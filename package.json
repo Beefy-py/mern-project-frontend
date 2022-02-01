@@ -18,7 +18,6 @@
     "lodash": "^4.17.21",
     "material-ui-chip-input": "^2.0.0-beta.2",
     "moment": "^2.29.1",
-    "random-image-unsplash": "^1.0.6",
     "react": "^17.0.2",
     "react-admin": "^3.19.3",
     "react-bootstrap": "^2.0.2",

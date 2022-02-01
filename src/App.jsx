@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/structure/header";
 
 import { getPosts } from "./actions/posts";
-import { getComments } from "./actions/comments";
 import { useDispatch, useSelector } from "react-redux";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -17,21 +16,27 @@ import UserList from "./components/user/userList";
 
 const App = () => {
   const dispatch = useDispatch();
+  const userData = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
     console.log("getting posts");
     dispatch(getPosts());
-
-    console.log("getting comments");
-    dispatch(getComments());
   }, [dispatch, window.location]);
 
-  return (
-    <BrowserRouter>
+  const displayHeader = () => ({
+    user: (
       <header>
         <Header />
       </header>
+    ),
+    guest: <></>,
+  });
 
+  const userRole = userData ? "user" : "guest";
+
+  return (
+    <BrowserRouter>
+      {displayHeader()[userRole]}
       <Routes>
         <Route path="/posts" element={<MainContent />} />
 

@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 const AllPosts = ({ setCurrentId, scrollToForm, setFormShow }) => {
   const { posts, isLoading } = useSelector((state) => state.posts);
-  const comments = useSelector((state) => state.comments);
 
   const breakpointColumnsObj = {
     default: 3,
@@ -72,9 +71,6 @@ const AllPosts = ({ setCurrentId, scrollToForm, setFormShow }) => {
                 setCurrentId={setCurrentId}
                 scrollToForm={scrollToForm}
                 setFormShow={setFormShow}
-                postComments={comments.filter(
-                  (comment) => comment.postId === postId
-                )}
               />
             );
           })}

@@ -2,15 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { likePost, dislikePost, deletePost } from "../../actions/posts";
 
-import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Button from "react-bootstrap/Button";
 
-import moment from "moment";
-import { createComment, deleteComment } from "../../actions/comments";
 import { Link, useNavigate } from "react-router-dom";
 
 const SinglePost = ({
@@ -19,11 +14,9 @@ const SinglePost = ({
   title,
   author,
   message,
-  date_added,
   tags,
   likes,
   dislikes,
-  postComments,
   moment: momentPostCreated,
   setCurrentId,
   scrollToForm,
@@ -34,32 +27,13 @@ const SinglePost = ({
   const cardRef = useRef(null);
   const currentUser = JSON.parse(localStorage.getItem("profile"));
 
-  const [showComments, setShowComments] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [comment, setComment] = useState("");
 
   const options = { root: null, rootMargin: "0px", threshold: 0.05 };
 
   const callBackFunction = (entries) => {
     const [entry] = entries;
     setVisible(entry.isIntersecting);
-  };
-
-  const handleChange = (e) => {
-    setComment(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newComment = {
-      body: comment,
-      author: currentUser?.result?.name,
-      postId: postId,
-    };
-    dispatch(createComment(newComment));
-
-    setComment("");
   };
 
   const handleActionClick = (e) => {
@@ -176,73 +150,6 @@ const SinglePost = ({
               onClick={() => dispatch(dislikePost(postId))}
             ></i>
             <span> {dislikes.length}</span>
-          </div>
-
-          <div className="comment-section">
-            <i
-              className="far fa-comment"
-              onClick={() => setShowComments(true)}
-            ></i>
-
-            <span className="comment-count">{postComments.length}</span>
-
-            <Offcanvas
-              show={showComments}
-              onHide={() => setShowComments(false)}
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title>
-                  Comments Section: <b>{title}</b>
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea1"
-                >
-                  {/* <Form.Label>write comment</Form.Label> */}
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    onChange={handleChange}
-                    placeholder={"write a comment"}
-                  />
-                </Form.Group>
-                <button type="submit">Submit</button>
-              </Form>
-              <Offcanvas.Body>
-                {postComments.map((comment, index) => (
-                  <Card className="comment" key={index}>
-                    <Card.Header>
-                      {comment.author}
-                      <div className="actions">
-                        {/* <button
-                          onClick={() => handleCommentUpdate(comment._id)}
-                        >
-                          <i className="fas fa-edit"></i>
-                        </button> */}
-                        {comment.author === currentUser?.result?.name && (
-                          <button
-                            data-name="del-comment"
-                            onClick={() => dispatch(deleteComment(comment._id))}
-                          >
-                            <i className="fas fa-trash-alt"></i>
-                          </button>
-                        )}
-                      </div>
-                    </Card.Header>
-                    <Card.Body>
-                      <blockquote className="blockquote mb-0">
-                        <p>{comment.body}</p>
-                        <footer className="blockquote-footer">
-                          {moment(comment.commentedAt).fromNow()}
-                        </footer>
-                      </blockquote>
-                    </Card.Body>
-                  </Card>
-                ))}
-              </Offcanvas.Body>
-            </Offcanvas>
           </div>
         </div>
       </div>

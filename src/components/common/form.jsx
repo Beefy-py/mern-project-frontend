@@ -4,9 +4,11 @@ import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 import { loremIpsum, fullname, username } from "react-lorem-ipsum";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ currentId, setCurrentId, formShow, setFormShow, formRef }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const [postData, setPostData] = useState({
@@ -44,13 +46,17 @@ const Form = ({ currentId, setCurrentId, formShow, setFormShow, formRef }) => {
           tags,
         })
       );
+      navigate(`/posts/${currentId}`);
     } else {
       dispatch(
-        createPost({
-          ...postData,
-          authorName: user?.result?.name,
-          tags,
-        })
+        createPost(
+          {
+            ...postData,
+            authorName: user?.result?.name,
+            tags,
+          },
+          navigate
+        )
       );
     }
 

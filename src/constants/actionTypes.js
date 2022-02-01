@@ -11,10 +11,7 @@ export const END_LOADING = "END_LOADING";
 export const FILTER_OLDEST = "FILTER_OLDEST";
 export const FILTER_MOST_LIKED = "FILTER_MOST_LIKED";
 
-export const FETCH_COMMENTS = "FETCH_COMMENTS";
-export const CREATE_COMMENT = "CREATE_COMMENT";
-export const UPDATE_COMMENT = "UPDATE_COMMENT";
-export const DELETE_COMMENT = "DELETE_COMMENT";
+export const COMMENT = "COMMENT";
 
 export const FETCH_USERS = "FETCH_USERS";
 export const AUTH = "AUTH";

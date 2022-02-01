@@ -45,7 +45,7 @@ const MainContent = () => {
         )}`
       );
     } else {
-      navigate("/");
+      navigate("/posts");
     }
   };
 

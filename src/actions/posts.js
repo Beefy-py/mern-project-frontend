@@ -10,6 +10,7 @@ import {
   FILTER_MOST_LIKED,
   START_LOADING,
   END_LOADING,
+  COMMENT,
 } from "../constants/actionTypes";
 
 export const getPosts =
@@ -50,11 +51,12 @@ export const getSinglePost = (postId) => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
     dispatch({ type: CREATE, payload: data });
+    navigate(`/posts/${data._id}`);
     dispatch({ type: END_LOADING });
   } catch (err) {
     console.log(err);
@@ -74,6 +76,18 @@ export const deletePost = (postId) => async (dispatch) => {
   try {
     await api.deletePost(postId);
     dispatch({ type: DELETE, payload: postId });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const commentPost = (commentObj, postId) => async (dispatch) => {
+  try {
+    const { data } = await api.comment(commentObj, postId);
+
+    dispatch({ type: COMMENT, payload: data });
+
+    return data.comments;
   } catch (err) {
     console.log(err);
   }

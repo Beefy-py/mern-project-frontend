@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PRODUCTION = false;
+const PRODUCTION = true;
 
 const url = PRODUCTION
   ? "https://poster-mern.herokuapp.com"
@@ -32,10 +32,12 @@ export const likePost = (id) => API.patch(`/posts/${id}/react?like=1`);
 export const dislikePost = (id) => API.patch(`/posts/${id}/react?like=0`);
 
 export const getComments = () => API.get(`/comments`);
-export const createComment = (newComment) => API.post(`/comments`, newComment);
-export const updateComment = (id, comment) =>
-  API.patch(`/comments/${id}`, comment);
-export const deleteComment = (id) => API.delete(`/comments/${id}`);
+export const comment = (commentData, id) =>
+  API.post(`/posts/${id}/comment`, commentData);
+// export const createComment = (newComment) => API.post(`/comments`, newComment);
+// export const updateComment = (id, comment) =>
+//   API.patch(`/comments/${id}`, comment);
+// export const deleteComment = (id) => API.delete(`/comments/${id}`);
 
 export const fetchUsers = () => API.get("/users/user-list");
 export const login = (formData) => API.post("/users/login", formData);

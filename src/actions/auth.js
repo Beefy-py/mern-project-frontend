@@ -11,7 +11,7 @@ export const registerUser = (userFields, navigate) => async (dispatch) => {
     const { data } = await api.register(userFields);
     dispatch({ type: AUTH, data });
 
-    navigate("/home");
+    window.location.replace("/home");
   } catch (err) {
     console.log(err);
   }
@@ -23,7 +23,7 @@ export const loginUser = (userFields, navigate) => async (dispatch) => {
     dispatch({ type: AUTH, data });
     console.log(data);
 
-    navigate("/home");
+    window.location.replace("/home");
   } catch (err) {
     console.log(err);
   }

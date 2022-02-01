@@ -12,9 +12,9 @@ const Dashboard = () => {
     )
   );
 
-  const userComments = useSelector((state) =>
-    state.comments.filter((com) => com.author === currentUser?.result?.name)
-  );
+  // const userComments = useSelector((state) =>
+  //   state.comments.filter((com) => com.author === currentUser?.result?.name)
+  // );
 
   const mostLiked = userPosts.sort(
     (a, b) => b.likes.length - a.likes.length
@@ -25,8 +25,9 @@ const Dashboard = () => {
 
   const getPosterScore = () => {
     console.log(totalLikes, totalDislikes, userPosts.length);
-    const result = (totalLikes - userPosts.length) / totalDislikes;
-    console.log(result);
+    const result =
+      totalLikes / userPosts.length + (totalDislikes / userPosts.length) * 10;
+    console.log(result, Math.round(result, 2));
     if (!result || result === NaN || result === Infinity) return "0";
     return Math.round(result, 2);
   };
@@ -61,9 +62,9 @@ const Dashboard = () => {
       <aside className="comments">
         <h3>
           Your Comments
-          <span>{userComments.length}</span>
+          <span>{0}</span>
         </h3>
-        {userComments.length ? (
+        {/* {userComments.length ? (
           <div className="data">
             {userComments.map((com, index) => (
               <div key={index}>{com.body}</div>
@@ -71,7 +72,7 @@ const Dashboard = () => {
           </div>
         ) : (
           <h4>You haven't commented on any post.</h4>
-        )}
+        )} */}
       </aside>
       <aside className="posts">
         <h3>

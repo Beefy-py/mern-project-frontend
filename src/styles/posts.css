@@ -363,62 +363,6 @@ form .actions .btn-dummy {
   margin-left: 0.5rem;
 }
 
-.offcanvas {
-  background: var(--primary-color);
-}
-
-.offcanvas form {
-  width: 90%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--secondary-color0);
-}
-
-.offcanvas div.mb-3 {
-  grid-column: 1/4;
-  margin: 0;
-}
-
-.offcanvas button[type="submit"] {
-  padding-left: 0.5rem;
-  background: var(--accent-color);
-  color: white;
-  font-weight: bold;
-  border: none;
-  grid-column: 1/2;
-  padding: 0.3rem;
-  border-radius: 0.15rem;
-}
-
-.offcanvas .comment {
-  margin: 1rem 0;
-}
-
-.comment .card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.comment .actions button {
-  border: none;
-  cursor: pointer;
-}
-
-.comment .actions button:hover {
-  transform: scale(0.9);
-}
-
-.comment .actions button:active {
-  background: var(--secondary-color);
-}
-
-.comment .actions button[data-name="del-comment"] {
-  color: var(--danger);
-}
-
 .single-post {
   background: none;
 }
@@ -456,8 +400,7 @@ form .actions .btn-dummy {
 .single-post .body {
   padding: 1rem;
   width: 60%;
-  margin: 0 auto;
-  height: 100vh;
+  margin: 0.5rem auto 3rem;
 }
 
 .single-post .body .text {
@@ -470,6 +413,7 @@ form .actions .btn-dummy {
   color: var(--accent-color);
   margin-left: -0.3rem;
   margin-right: 0.5rem;
+  text-transform: uppercase;
 }
 
 .single-post .title-img {
@@ -511,6 +455,26 @@ form .actions .btn-dummy {
   margin-left: 0.5rem;
 }
 
+.single-post .info .likes {
+  margin: 0.5rem 0;
+}
+
+.single-post .info .likes span {
+  border: 0.1rem solid var(--secondary-color);
+  border-radius: 0.1rem;
+}
+
+.single-post .info .likes span span {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  margin-left: 0.5rem;
+  padding: 0 0.2rem;
+}
+
+.single-post .info .tags {
+  word-break: break-all;
+}
+
 .single-post .info .tags span {
   margin-right: 0.5rem;
   font-weight: bold;
@@ -521,14 +485,174 @@ form .actions .btn-dummy {
 .single-post .info::after {
   content: "";
   display: block;
-  width: 100%;
+  width: 60%;
   height: 0.1rem;
   background: var(--accent-color);
 }
 
+.comment-section {
+  width: 60%;
+  margin: 2rem auto;
+  display: grid;
+}
+
+.comment-section .comments {
+  max-height: 15rem;
+  overflow: auto;
+}
+
+.comment-section .comment {
+  padding: 0.5rem 1rem;
+  border-radius: 0.1rem;
+  margin: 0.5rem 0;
+  background: var(--primary-color);
+}
+
+.comment-section .comment .title {
+  margin: 0.5rem 0;
+}
+
+.comment-section .comment .title::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 0.1rem;
+  background: var(--accent-color);
+  opacity: 0.6;
+}
+
+.comment-section .comment span:first-child {
+  font-weight: bold;
+}
+
+.comment-section .comment span:last-child {
+  color: var(--secondary-color);
+  margin-left: 1rem;
+}
+
+.comment-section .comment .text {
+  white-space: pre-wrap;
+  padding-left: 0.5rem;
+  opacity: 0.8;
+}
+
+.comment-section textarea[type="text"] {
+  border: 1px solid var(--secondary-color);
+  margin: 0.5rem 0;
+  border-radius: 0.1rem;
+  min-height: 5rem;
+}
+
+.comment-section input[type="submit"] {
+  border: 1px solid var(--accent-color);
+  margin: 0.5rem 0;
+  width: fit-content;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.1rem;
+}
+
+.comment-section input[type="submit"]:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+.comment-section h2 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.recommended-posts .posts {
+  max-width: 80vw;
+  width: 100%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.recommended-posts h2 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.recommended-posts h2::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 0.1rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  background: var(--secondary-color);
+}
+
+.recommended-posts .post-card {
+  border: 1px solid var(--secondary-color);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  text-transform: capitalize;
+  width: calc(100% / 3 - 1rem);
+  margin: 0 0.5rem;
+}
+
+.recommended-posts .post-card h3 {
+  font-size: 1.7rem;
+  color: var(--accent-color);
+  text-align: center;
+  cursor: pointer;
+}
+
+.recommended-posts .post-card .info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.recommended-posts .post-card .info span:first-child {
+  color: var(--secondary-color);
+}
+
+.recommended-posts .post-card .tags {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: var(--accent-color);
+  margin-top: 0.5rem;
+  word-break: break-all;
+}
+
+.recommended-posts .post-card .tags .tag {
+  padding-right: 0.5rem;
+}
+
+.recommended-posts .post-card p a {
+  text-transform: lowercase;
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 780px) {
+  .single-post .info::after {
+    width: 100%;
+  }
+
   .single-post .body {
     width: 70%;
+  }
+
+  .comment-section {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-section h2 {
+    text-align: center;
+  }
+
+  .recommended-posts .posts {
+    flex-wrap: wrap;
+  }
+
+  .recommended-posts .post-card {
+    margin: 0.5rem 0;
+    width: 100%;
   }
 }
 
